@@ -21,7 +21,7 @@
 
       <button mat-raised-button color="primary"
               (click)="login()"
-              [disabled]="!form.valid">Login</button>
+              [disabled]="authStore.isLoggedIn$ | async">Login</button>
 
     </form>
   </mat-card-content>
