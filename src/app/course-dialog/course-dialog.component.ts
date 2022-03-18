@@ -2,19 +2,13 @@ import { AfterViewInit, Component, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import * as moment from "moment";
-import { throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { MessageService } from "../messages/message.service";
 import { Course } from "../model/course";
 import { CourseStore } from "../services/course.store";
-import { CoursesService } from "../services/courses.service";
-import { LoadingService } from "../services/loading.service";
 
 @Component({
   selector: "course-dialog",
   templateUrl: "./course-dialog.component.html",
   styleUrls: ["./course-dialog.component.css"],
-  providers: [LoadingService, MessageService],
 })
 export class CourseDialogComponent implements AfterViewInit {
   form: FormGroup;
@@ -24,8 +18,6 @@ export class CourseDialogComponent implements AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
-    private loadingService: LoadingService,
-    private messageService: MessageService,
     private courseStore: CourseStore,
     @Inject(MAT_DIALOG_DATA) course: Course
   ) {
@@ -38,7 +30,6 @@ export class CourseDialogComponent implements AfterViewInit {
       longDescription: [course.longDescription, Validators.required],
     });
 
-    this.loadingService.addCounter();
   }
 
   ngAfterViewInit() {}

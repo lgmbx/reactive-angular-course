@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { Course } from "../model/course";
 import { CourseStore } from "../services/course.store";
@@ -8,6 +8,7 @@ import { LoadingService } from "../services/loading.service";
   selector: "home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   beginnerCourses$: Observable<Course[]>;
